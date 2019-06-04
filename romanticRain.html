@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	*{margin: 0;padding: 0;}
+		.container{
+			width:100vw;	
+			height: 100vh;
+			background: linear-gradient(to bottom, #202020, #111119);
+		}
+		.rain{background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));position: absolute;top:0;right:0;transition: .1s linear all;width:1px;height:50px;}
+	</style>
+</head>
+<body>
+ <div class="container"></div>
+</body>
+<script type="text/javascript">
+	let container = document.querySelector(".container")
+	
+	add()
+	function add(){
+		for(let i =0;i<10;i++){
+			let rain = document.createElement("div")
+			let random = Math.random()*100
+			let left = random + "%"
+			let top = 0 + random +'px'
+			rain.classList.add("rain")
+			rain.style.left = left
+			rain.style.top = top
+			container.appendChild(rain)
+		}
+	}
+	function drop () {
+		// add()
+		let rain = document.querySelectorAll(".rain")
+		if(rain.length<30){
+			add()
+		}
+		rain.forEach((item)=>{
+			item.style.top = item.style.top.replace(/px/,"")-1+Math.random()*100+"px"
+			if(item.style.top.replace(/px/,"")>700){
+				container.removeChild(item)
+			}
+		})
+	}
+	drop()
+	setInterval(drop,100)
+	
+</script>
+</html>
