@@ -6,18 +6,18 @@
 	*{margin: 0;padding: 0;}
 		.container{
 			width:100vw;	
-			height: 100vh;
-			background: linear-gradient(to bottom, #202020, #111119);
 		}
-		.rain{background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));position: absolute;top:0;right:0;transition: .1s linear all;width:1px;height:50px;}
+		.rain{background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));position: absolute;top:0;right:0;width:1px;height:50px;}
+		/*transition: .1s linear all;*/
+		html{background: linear-gradient(to bottom, #202020, #111119);}
 	</style>
 </head>
 <body>
- <div class="container"></div>
+ <div class="container" style="height:100vh;"></div>
 </body>
 <script type="text/javascript">
 	let container = document.querySelector(".container")
-	
+	console.log(container.style.height)
 	add()
 	function add(){
 		for(let i =0;i<10;i++){
@@ -38,8 +38,8 @@
 			add()
 		}
 		rain.forEach((item)=>{
-			item.style.top = item.style.top.replace(/px/,"")-1+Math.random()*100+"px"
-			if(item.style.top.replace(/px/,"")>700){
+			item.style.top = item.style.top.replace(/px/,"")-1+Math.random()*300+"px"
+			if(item.style.top.replace(/px/,"")>1200){
 				container.removeChild(item)
 			}
 		})
